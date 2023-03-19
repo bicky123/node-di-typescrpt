@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 ///global error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    if (!err){
+    if (!err) {
         next();
     }
     console.log('Globally, Error :: ', JSON.stringify(err));
