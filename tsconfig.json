@@ -25,5 +25,5 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "lib": ["es2015"]
+  "lib": ["es6"]
 }
