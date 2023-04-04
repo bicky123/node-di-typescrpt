@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import express, { Request, Response, Express, NextFunction } from 'express';
 import bodyParser from 'body-parser';
-import router from './routings/mainRout';
-import { StatusCodes } from './enums/status-codes';
+import router from './src/routings/mainRout';
+import { StatusCodes } from './src//enums/status-codes';
 const app: Express = express();
 const PORT: string = process.env.PORT || '5000';
 

@@ -11,7 +11,9 @@ export class HomeController {
 
     public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
         try {
-            return res.status(StatusCodes.Status200OK).send(new APIDataResponse<Array<string>>(StatusCodes.Status200OK, [this.testRepository.test()], "data added successfully"));
+            return res
+                    .status(StatusCodes.Status200OK)
+                    .send(new APIDataResponse<Array<string>>(StatusCodes.Status200OK, [this.testRepository.test()], "Data added successfully"));
         } catch (ex) {
             next(ex);
         }
