@@ -3,7 +3,7 @@ import { Service } from "typedi";
 import * as path from 'path';
 import { IUser } from '../domain/user';
 
-@Service()
+@Service({ transient: true })
 export class UserService {
     /**
      *
@@ -15,5 +15,10 @@ export class UserService {
         const users: Array<IUser> = JSON.parse(usersBuffer.toString('utf-8'));
         return users;
     }
-    
+
+    async addUser(users: Array<IUser>): Promise<boolean> {
+        await fs.writeFileSync(path.join(__dirname, '../../../db/users.json'), JSON.stringify(users));
+        return true;
+    }
+
 }
