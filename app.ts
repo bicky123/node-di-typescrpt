@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import cors from 'cors';
 import express, { Request, Response, Express, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import router from './src/routings/mainRout';
@@ -11,6 +12,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
+
+app.use(cors({
+    origin: ['http://localhost:4200'],
+    credentials: true
+}));
 
 ///global error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
