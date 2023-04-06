@@ -1,8 +1,8 @@
 import { Service } from "typedi";
-import { UserService } from "../services/user-service";
-import { IUserDto } from "../dto/user-dto";
+import { UserService } from "../services/user.service";
+import { IUserDto } from "../dto/user.dto";
 import { IAddUserModel } from "../models/add-user.model";
-import { IUser } from "../domain/user";
+import { IUser } from "../domain/user.domain";
 
 @Service({ transient: true })
 export class UserRepository {

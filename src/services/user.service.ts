@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { Service } from "typedi";
 import * as path from 'path';
-import { IUser } from '../domain/user';
+import { IUser } from '../domain/user.domain';
 
 @Service({ transient: true })
 export class UserService {

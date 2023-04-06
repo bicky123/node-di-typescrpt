@@ -1,4 +1,4 @@
-import { APIResponse } from "./apiResponse"
+import { APIResponse } from "./api.response"
 
 export class APIDataResponse<T> extends APIResponse {
 

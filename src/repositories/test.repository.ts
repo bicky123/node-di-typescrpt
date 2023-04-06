@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { TestServices } from "../services/test-service";
+import { TestServices } from "../services/test.service";
 
 @Service()
 export class TestRepository {

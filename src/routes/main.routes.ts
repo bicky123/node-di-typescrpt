@@ -1,7 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 import Container from 'typedi';
-import { HomeController } from '../controllers/homeController';
-import { UserController } from '../controllers/userController';
+import { HomeController } from '../controllers/home.controller';
+import { UserController } from '../controllers/user.controller';
 const route: Express = express();
 
 const homeController = Container.get(HomeController);

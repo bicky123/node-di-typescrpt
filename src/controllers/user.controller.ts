@@ -1,10 +1,10 @@
 import { Response, Request, NextFunction } from "express";
 import { Service } from "typedi";
-import { APIDataResponse } from "../ApiResponse/apiDataResponse";
+import { APIDataResponse } from "../ApiResponse/api-data.response";
 import { StatusCodes } from "../enums/status-codes";
-import { APIResponse } from '../ApiResponse/apiResponse';
-import { UserRepository } from "../repositories/user-repository";
-import { IUserDto } from "../dto/user-dto";
+import { APIResponse } from '../ApiResponse/api.response';
+import { UserRepository } from "../repositories/user.repository";
+import { IUserDto } from "../dto/user.dto";
 import { IAddUserModel } from "../models/add-user.model";
 
 @Service({ multiple: true })

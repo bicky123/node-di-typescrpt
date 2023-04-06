@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { Service } from "typedi";
-import { APIDataResponse } from '../ApiResponse/apiDataResponse';
+import { APIDataResponse } from '../ApiResponse/api-data.response';
 import { StatusCodes } from '../enums/status-codes';
-import { TestRepository } from '../repositories/test-repository';
-import { UserRepository } from '../repositories/user-repository';
+import { TestRepository } from '../repositories/test.repository';
+import { UserRepository } from '../repositories/user.repository';
 
 @Service({ multiple: true })
 export class HomeController {
