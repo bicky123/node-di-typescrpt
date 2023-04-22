@@ -1,11 +1,14 @@
 import { Service } from "typedi";
+import { TestRepository } from "../repositories/test.repository";
 
 @Service()
 export class TestServices {
 
-    constructor() { }
+    constructor(private readonly testRepository: TestRepository) { }
 
-    test() {
-        return 'this is test services';
+    public test(): string {
+        console.log(this.testRepository.test());
+        return 'this is test';
     }
+
 }

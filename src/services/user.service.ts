@@ -1,23 +1,56 @@
-import * as fs from 'fs';
 import { Service } from "typedi";
-import * as path from 'path';
 import { IUser } from '../domain/user.domain';
+import { IUserDto } from '../dto/user.dto';
+import { IAddUserModel } from '../models/add-user.model';
+import { UserRepository } from '../repositories/user.repository';
 
 @Service({ transient: true })
 export class UserService {
     /**
      *
      */
-    constructor() { }
+    constructor(private readonly userRepository: UserRepository) { }
 
-    async getUsers(): Promise<Array<IUser>> {
-        const usersBuffer: Buffer = await fs.readFileSync(path.join(__dirname, '../../../db/users.json'));
-        const users: Array<IUser> = JSON.parse(usersBuffer.toString('utf-8'));
+    async getUserById(id: number): Promise<IUserDto | undefined> {
+        const users = await this.userRepository.getUsers();
+        if (!users || users.length === 0) {
+            return undefined;
+        }
+        const user: IUserDto | undefined = users.find(val => val.id === id);
+        return user;
+    }
+
+    async getUserByEmail(email: string): Promise<IUserDto | undefined> {
+        const users = await this.userRepository.getUsers();
+        if (!users || users.length === 0) {
+            return undefined;
+        }
+        const user: IUserDto | undefined = users.find(val => val.email === email);
+        return user;
+    }
+
+    async getUsers(): Promise<Array<IUserDto> | undefined> {
+        const users: Array<IUserDto> = await this.userRepository.getUsers();
+        if (!users || users.length === 0) {
+            return undefined;
+        }
         return users;
     }
 
-    async addUser(users: Array<IUser>): Promise<boolean> {
-        await fs.writeFileSync(path.join(__dirname, '../../../db/users.json'), JSON.stringify(users));
+    async addUser(user: IAddUserModel): Promise<boolean> {
+        let users = await this.userRepository.getUsers();
+        users = users.sort(val => val.id);
+        let id: number = 1;
+        if (users && users.length > 0) {
+            id = users[users.length - 1].id + 1;
+        }
+        const newUser: IUser = user as IUser;
+        newUser.id = id;
+        users.push(newUser);
+        const res = this.userRepository.addUser(users);
+        if (!res) {
+            return false;
+        }
         return true;
     }
 
