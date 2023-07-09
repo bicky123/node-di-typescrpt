@@ -47,7 +47,7 @@ export class UserService {
         const newUser: IUser = user as IUser;
         newUser.id = id;
         users.push(newUser);
-        const res = this.userRepository.addUser(users);
+        const res = await this.userRepository.addUser(users);
         if (!res) {
             return false;
         }
